@@ -19,7 +19,15 @@ function wsl {
     }
 
     Write-Host ""
+    Write-Host "[Q] Quit"
+    Write-Host ""
+
     $choice = Read-Host "Select distro number"
+
+    if ($choice -match '^[Qq]$') {
+        Write-Host "Cancelled."
+        return
+    }
 
     if ($choice -match '^\d+$' -and [int]$choice -ge 1 -and [int]$choice -le $distros.Count) {
         $selected = $distros[[int]$choice - 1]
