@@ -1,8 +1,8 @@
 function wsl {
     $distros = & wsl.exe --list --quiet | ForEach-Object {
-        $_.Trim()
+    ($_ -replace "`0", "").Trim()
     } | Where-Object {
-        $_ -ne ""
+    $_ -ne ""
     }
 
     if ($args.Count -gt 0) {
